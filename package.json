@@ -1,0 +1,12 @@
+{
+  "name": "worst_series_ending",
+  "version": "1.0.0",
+  "description": "I am compiling a list of TV series with the most disappointing endings, taking into account factors such as storyline coherence, character development, plot resolution, and more.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
