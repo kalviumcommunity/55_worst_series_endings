@@ -1,7 +1,8 @@
 const express = require('express');
 const app = express();
-const port = 3000;
+const port = process.env.PUBLIC_PORT || 3000;
 const { connect, disconnect, isconnected, connectToDB } = require('./db');
+const routes = require('./routes');
 
 connectToDB();
 
@@ -17,5 +18,7 @@ if (require.main === module) {
     console.log(` server running on PORT: ${port}`);
   });
 }
+
+app.use('/', routes);
 
 module.exports = app;
