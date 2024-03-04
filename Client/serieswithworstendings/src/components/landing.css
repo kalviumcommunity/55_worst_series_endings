@@ -25,13 +25,12 @@ body {
     font-size: 1.5vw;
 }
 
-/* SearchBar.css */
 .search-container {
     position: fixed;
     top: 4%;
     left: 35%;
-    width: 30vw; /* Adjust width as needed */
-    background-color: rgba(255, 255, 255, 0.3); /* Transparent white */
+    width: 30vw; 
+    background-color: rgba(255, 255, 255, 0.3); 
     padding: 0.7%;
     border-radius: 5px;
   }
@@ -41,8 +40,8 @@ body {
     padding: 1.3%;
     border: none;
     outline: none;
-    background: transparent; /* Make the input background transparent */
-    color: #ECF0F1; /* Text color */
+    background: transparent; 
+    color: #ECF0F1; 
     font-family: 'Arial', sans-serif;
   }
   
@@ -81,9 +80,11 @@ body {
     background-color: #4d4d4d;
     height: 90vh;
     width: 100vw;
-    opacity: 40%;
-    margin-top: 7%;
-    border-top: 3.5px solid #bdbdbd;
+    /* opacity: 40%; */
+    /* filter: opacity(40%); */
+    background-color: rgba(140, 140, 140, 0.3);
+    margin-top: 6.5%;
+    border-top: 0.25vw solid #bdbdbd;
     overflow-y: auto;
 }
 
@@ -94,6 +95,9 @@ body {
     height: 320px;
     margin-left: 10px;
     margin-bottom: 50px;
+    color: #686565;
+    font-weight: bolder; 
+    border: 2px solid rgb(85, 85, 85) ;  
 }
 
 #flexItems{
@@ -114,6 +118,16 @@ body {
     justify-content: center;
 }
 
-.foodSearched{
+.cardimg{
     height: 35vh;
+}
+
+.cardtext{
+    margin-top: -5%;
+
+}
+
+.cardtext p {
+    margin-bottom: 0%;
+    margin-top: 0%;
 }
