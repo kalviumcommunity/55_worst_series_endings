@@ -106,7 +106,7 @@ body {
     width: 100%;
 }
 
-.row1, .row2, .row3{
+.row1, .row2{
     width: 50%;
     display: flex;
     flex-wrap: wrap;
@@ -114,3 +114,6 @@ body {
     justify-content: center;
 }
 
+.foodSearched{
+    height: 35vh;
+}
