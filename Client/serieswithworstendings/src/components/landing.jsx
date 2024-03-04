@@ -1,6 +1,7 @@
 import React from 'react';
 import './landing.css';
 import seriesIcon from '../assets/seriesicon.png';
+import howimetyourmother from '../assets/howimetyourmother.jpg';
 
 function Landing() {
     return (
@@ -22,9 +23,8 @@ function Landing() {
                     <br />
                     <div id="searchedSection">
                         <div className='row1'>
-                        {/* First row */}
                         <div className="container">
-                            <img src="./Assets/food.png" alt="Food" className="foodSearched" />
+                            <img src={howimetyourmother} alt="Food" className="foodSearched" />
                             <p className="foodnameSearched">Mexican Chicken</p>
                         </div>
                         <div className="container">
