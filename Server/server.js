@@ -6,7 +6,10 @@ const routes = require('./routes');
 
 connectToDB();
 
-// define the ping route
+const cors = require('cors')
+
+app.use(cors())
+
 app.get('/', (req, res) => {
   res.send('pong');
   console.log({"connectionstatus": isconnected()});
