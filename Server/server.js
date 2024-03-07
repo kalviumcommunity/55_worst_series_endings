@@ -7,7 +7,6 @@ const routes = require('./routes');
 connectToDB();
 
 const cors = require('cors')
-
 app.use(cors())
 
 app.get('/', (req, res) => {
