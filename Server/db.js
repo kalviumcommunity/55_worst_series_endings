@@ -1,7 +1,3 @@
-// 1. Read the connection parameters from config.js.
-// 2. Use Mongoose to connect to the MongoDB database.
-// 3. Export the Mongoose connection object.
-
 require('dotenv').config();
 
 const URI = process.env.URI;
@@ -9,7 +5,6 @@ const mongoose = require('mongoose');
 
 const connectToDB = async () => {
   try {
-    //  Your code goes here
     const connect = await mongoose.connect(URI)
     console.log('📦 connected to mongoDB');
   } catch (err) {
@@ -19,7 +14,6 @@ const connectToDB = async () => {
 
 const disconnectFromDB = async () => {
   try {
-    //  Your code goes here
     mongoose.disconnect()
     console.log('📦 disconnected from mongoDB');
   } catch (err) {
