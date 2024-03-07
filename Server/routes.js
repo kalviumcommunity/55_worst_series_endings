@@ -21,6 +21,17 @@ router.post('/post',(req,res)=>{
     res.json(req.body)
 })
 
+router.post('/new', async (req, res) => {
+    try {
+        const newData = await Model.create(req.body);
+        console.log(newData)
+        res.send(newData);
+    } catch (error) {
+        console.error(error);
+        res.send('Error');
+    }
+});
+
 router.put('/put',(req,res)=>{
     res.send("put request")
 })
