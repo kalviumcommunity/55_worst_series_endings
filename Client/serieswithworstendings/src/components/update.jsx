@@ -1,4 +1,3 @@
-// update.jsx
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
@@ -18,9 +17,15 @@ function Update() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const res = await axios.get(`https://five5-worst-series-endings-1.onrender.com/icecream/${id}`);
-                // Set the form data to the fetched data
-                setFormData(res.data);
+                const res = await axios.get(`https://five5-worst-series-endings-1.onrender.com/read/${id}`);
+                const originalValues = res.data; 
+                setFormData({
+                    seriesname: originalValues.seriesname,
+                    seasons: originalValues.seasons,
+                    ratingbefore: originalValues.ratingbefore,
+                    ratingafter: originalValues.ratingafter,
+                    image: originalValues.image
+                });
             } catch (err) {
                 console.log(err);
             }
@@ -37,7 +42,6 @@ function Update() {
         e.preventDefault();
         try {
             await axios.put(`https://five5-worst-series-endings-1.onrender.com/update/${id}`, formData);
-            // Redirect to landing page after successful update
             navigate('/');
         } catch (error) {
             console.error("Error updating data:", error);
