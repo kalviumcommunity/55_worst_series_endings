@@ -46,7 +46,9 @@ function Landing() {
                                         <p>{series.seriesname}</p>
                                         <p>{`Before: ${series.ratingbefore} After: ${series.ratingafter}`}</p>
                                         <p>{`Seasons: ${series.seasons}`}</p>
-                                    </div>
+                                        <button>Update</button>
+                                        <button>Delete</button>
+                                    </div>  
                                 </div>
                             ))}
                         </div>
