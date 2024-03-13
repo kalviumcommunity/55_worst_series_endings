@@ -36,9 +36,13 @@ function Form() {
       });
   };
 
+  const handleBack = () => {
+    navigate('/'); 
+  };
+
   return (
     <div className="Form">
-      <img src={backarrow} alt="" id='backarrow' />
+      <img src={backarrow} alt="" id='backarrow' onClick={handleBack} />
       <form className="animated-form" onSubmit={handleSubmit}>
         <input
           type="text"

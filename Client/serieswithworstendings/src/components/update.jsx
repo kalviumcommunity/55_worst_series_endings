@@ -43,7 +43,6 @@ function Update() {
         e.preventDefault();
         try {
             await axios.put(`https://five5-worst-series-endings-1.onrender.com/update/${id}`, formData);
-            // Redirect to landing page after successful update
             navigate('/');
         } catch (error) {
             console.error("Error updating data:", error);

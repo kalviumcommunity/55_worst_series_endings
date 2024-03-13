@@ -42,7 +42,7 @@ router.delete('/delete',(req,res)=>{
 
 router.get('/read/:id', async (req,res) => {
     const _id = req.params.id
-    userModel.findById({_id})
+    Model.findById({_id})
     .then(users => res.json(users))
     .catch(err => console.log(err))
   })

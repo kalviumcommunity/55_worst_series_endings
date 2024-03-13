@@ -102,7 +102,7 @@ body {
     border-radius: 10px;
     background: #ffffff;
     width: 14vw;
-    height: 340px;
+    height: 380px;
     margin-left: 10px;
     margin-bottom: 50px;
     color: #686565;
@@ -147,6 +147,11 @@ body {
 .cardtext p {
     margin-bottom: 0%;
     margin-top: 0%;
+}
+
+.uplink{
+    text-decoration: none;
+    color: white;
 }
 
 .row1 {

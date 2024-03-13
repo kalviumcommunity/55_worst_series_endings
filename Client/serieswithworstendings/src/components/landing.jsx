@@ -23,7 +23,6 @@ function Landing() {
     const handleDelete = async (id) => {
         try {
             await axios.delete(`https://five5-worst-series-endings-1.onrender.com/delete/${id}`);
-            // After deletion, fetch the updated series list and update the state
             const updatedRes = await axios.get("https://five5-worst-series-endings-1.onrender.com/read");
             setSeriesList(updatedRes.data);
         } catch (error) {
@@ -58,9 +57,9 @@ function Landing() {
                                         <p>{`Before: ${series.ratingbefore} After: ${series.ratingafter}`}</p>
                                         <p>{`Seasons: ${series.seasons}`}</p>
                                         
-                                        <Link to={`/update/${series._id}`} className='uplink'>
+                                       <button> <Link to={`/update/${series._id}`} className='uplink'>
                                           Update
-                                        </Link>
+                                        </Link></button>
                                         <button onClick={() => handleDelete(series._id)}>Delete</button>
                                     </div>  
                                 </div>
@@ -75,9 +74,3 @@ function Landing() {
 
 export default Landing;
 
-
-
-
-{/* <Link to={/update/${icecream._id}} className='uplink'>
-                          Update
-                        </Link> */}
