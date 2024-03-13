@@ -2,7 +2,7 @@ import './landing.css';
 import seriesIcon from '../assets/seriesicon.png';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom'; // Import Link component from react-router-dom
+import { Link } from 'react-router-dom';
 
 function Landing() {
     const [seriesList, setSeriesList] = useState([]);
@@ -18,7 +18,18 @@ function Landing() {
         };
 
         fetchData();
-    }, []);
+    }, []); 
+
+    const handleDelete = async (id) => {
+        try {
+            await axios.delete(`https://five5-worst-series-endings-1.onrender.com/delete/${id}`);
+            // After deletion, fetch the updated series list and update the state
+            const updatedRes = await axios.get("https://five5-worst-series-endings-1.onrender.com/read");
+            setSeriesList(updatedRes.data);
+        } catch (error) {
+            console.error("Error deleting data:", error);
+        }
+    };
 
     return (
         <div>
@@ -40,13 +51,18 @@ function Landing() {
                     <div id="searchedSection">
                         <div className='row1'>
                             {seriesList.map(series => (
-                                <div key={series.id} className="container">
+                                <div key={series._id} className="container">
                                     <img src={series.image} alt={series.seriesname} className="cardimg" />
                                     <div className='cardtext'>
                                         <p>{series.seriesname}</p>
                                         <p>{`Before: ${series.ratingbefore} After: ${series.ratingafter}`}</p>
                                         <p>{`Seasons: ${series.seasons}`}</p>
-                                    </div>
+                                        
+                                        <Link to={`/update/${series._id}`} className='uplink'>
+                                          Update
+                                        </Link>
+                                        <button onClick={() => handleDelete(series._id)}>Delete</button>
+                                    </div>  
                                 </div>
                             ))}
                         </div>
@@ -58,3 +74,10 @@ function Landing() {
 }
 
 export default Landing;
+
+
+
+
+{/* <Link to={/update/${icecream._id}} className='uplink'>
+                          Update
+                        </Link> */}
