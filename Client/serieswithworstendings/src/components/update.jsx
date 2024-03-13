@@ -1,4 +1,3 @@
-// update.jsx
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
@@ -19,7 +18,7 @@ function Update() {
         const fetchData = async () => {
             try {
                 const res = await axios.get(`https://five5-worst-series-endings-1.onrender.com/read/${id}`);
-                const originalValues = res.data; // Assuming this returns the original values of the series
+                const originalValues = res.data; 
                 setFormData({
                     seriesname: originalValues.seriesname,
                     seasons: originalValues.seasons,
