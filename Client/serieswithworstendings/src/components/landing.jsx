@@ -2,7 +2,7 @@ import './landing.css';
 import seriesIcon from '../assets/seriesicon.png';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom'; // Import Link component from react-router-dom
+import { Link } from 'react-router-dom';
 
 function Landing() {
     const [seriesList, setSeriesList] = useState([]);
