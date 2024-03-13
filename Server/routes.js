@@ -40,4 +40,44 @@ router.delete('/delete',(req,res)=>{
     res.send("delete request")
 })
 
+router.put("/update/:id", async (req, res) => {
+    const entityId = req.params.id;
+    const updateData = req.body;
+  
+    try {
+      const updatedEntity = await Model.findByIdAndUpdate(
+        entityId,
+        updateData,
+        { new: true }
+      );
+  
+      if (!updatedEntity) {
+        return res.status(404).json({ error: "Entity not found" });
+      }
+  
+      res.json(updatedEntity);
+    } catch (err) {
+      console.error(err);
+      res.status(500).send("Internal Server Error");
+    }
+  });
+  
+  
+    router.delete("/delete/:id", async (req, res) => {
+      const entityId = req.params.id;
+    
+      try {
+        const deletedEntity = await Model.findByIdAndDelete(entityId);
+    
+        if (!deletedEntity) {
+          return res.status(404).json({ error: "Entity not found" });
+        }
+    
+        res.json({ message: "Entity deleted successfully", deletedEntity });
+      } catch (err) {
+        console.error(err);
+        res.status(500).send("Internal Server Error");
+      }
+    });
+
 module.exports = router
