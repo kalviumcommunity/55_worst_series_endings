@@ -40,7 +40,7 @@ router.delete('/delete',(req,res)=>{
     res.send("delete request")
 })
 
-app.get('/read/:id', async (req,res) => {
+router.get('/read/:id', async (req,res) => {
     const _id = req.params.id
     userModel.findById({_id})
     .then(users => res.json(users))
