@@ -1,10 +1,13 @@
 const express = require('express');
 const app = express();
 const port = process.env.PUBLIC_PORT || 3000;
-const { connect, disconnect, isconnected, connectToDB } = require('./db');
+const { connectToDB,
+  disconnectFromDB,
+  isConnected } = require('./db');
 const routes = require('./routes');
 
 connectToDB();
+
 
 const cors = require('cors')
 app.use(cors())
