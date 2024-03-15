@@ -14,8 +14,8 @@ app.use(cors())
 
 app.get('/', (req, res) => {
   res.send('pong');
-  console.log({"connectionstatus": isconnected()});
-  res.json({"connectionstatus": isconnected()});
+  console.log({"connectionstatus": isConnected()});
+  res.json({"connectionstatus": isConnected()});
 });
 
 if (require.main === module) {
