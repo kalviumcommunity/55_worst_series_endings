@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import './signup.css';
+import backarrow from '../assets/backarrow.png'
 
 function Signup() {
   const navigate = useNavigate();
@@ -30,8 +32,13 @@ function Signup() {
     }
   };
 
+  const handleBack = () => {
+    navigate('/'); 
+  };
+
   return (
     <div className="form-container">
+      <img src={backarrow} alt="" id='backarrow' onClick={handleBack} />
       <form className="form" onSubmit={handleSubmit}>
         <label>Username:</label>
         <input 

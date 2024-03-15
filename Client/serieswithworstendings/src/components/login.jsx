@@ -1,7 +1,8 @@
-
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import './login.css'; 
+import backarrow from '../assets/backarrow.png'
 
 function Login() {
   const navigate = useNavigate();
@@ -17,9 +18,9 @@ function Login() {
         return;
       }
 
-      const response = await axios.post('/Login', { username, password });
+      const response = await axios.post('https://five5-worst-series-endings-1.onrender.com/login', { username, password });
       if (response.status === 200) {
-        navigate(`/update/${response.data.id}`); 
+        navigate('/'); 
       } else {
         setLoginMessage('Invalid Credentials');
       }
@@ -29,9 +30,14 @@ function Login() {
     }
   };
 
+  const handleBack = () => {
+    navigate('/'); 
+  };
+
   return (
-    <div className="form-container">
-      <form className="form" onSubmit={handleSubmit}>
+    <div className="Form"> 
+      <img src={backarrow} alt="" id='backarrow' onClick={handleBack} />
+      <form className="animated-form" onSubmit={handleSubmit}> 
         <label>Username:</label>
         <input 
           type="text" 
@@ -47,10 +53,10 @@ function Login() {
           required
           minLength={6}
         />
-        {loginMessage && <div className="error-message">{loginMessage}</div>}
+        {loginMessage && <div id="error-message">{loginMessage}</div>}
         <br></br>
 
-        <button type="submit" className="button">LOGIN</button>
+        <button type="submit">LOGIN</button>
       </form>
     </div>
   );
