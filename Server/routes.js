@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const schema = require('./schema');
 const { Model } = require('./schema');
+const { userModel } = require('./userschema');
 const Joi = require('joi');
 
 router.use(express.json());
@@ -85,7 +86,7 @@ router.delete('/delete/:id', async (req, res) => {
     }
 });
 
-router.post('/Signup',async(req,res)=>{
+router.post('/signup',async(req,res)=>{
     try{
         const user = await userModel.create({
             username:req.body.username,

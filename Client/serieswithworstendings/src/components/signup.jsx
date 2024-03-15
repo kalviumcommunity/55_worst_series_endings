@@ -16,7 +16,7 @@ function Signup() {
         return;
       }
 
-      const response = await axios.post('https://five5-worst-series-endings-1.onrender.com/Signup', { username, password });
+      const response = await axios.post('https://five5-worst-series-endings-1.onrender.com/signup', { username, password });
       if (response.status === 200) {
         sessionStorage.setItem('login', true);
         sessionStorage.setItem('signupSuccess', 'Signup successful'); 
