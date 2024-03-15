@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
+import backarrow from '../assets/backarrow.png';
 
 function Update() {
     const { id } = useParams();
@@ -48,32 +49,39 @@ function Update() {
         }
     };
 
+    const handleBack = () => {
+        navigate('/'); 
+      };
+
     return (
-        <div>
-            <h2>Update Series</h2>
-            <form onSubmit={handleSubmit}>
-                <div>
-                    <label>Series Name:</label>
-                    <input type="text" name="seriesname" value={formData.seriesname} onChange={handleChange} />
-                </div>
-                <div>
-                    <label>Seasons:</label>
-                    <input type="number" name="seasons" value={formData.seasons} onChange={handleChange} />
-                </div>
-                <div>
-                    <label>Rating Before:</label>
-                    <input type="number" name="ratingbefore" value={formData.ratingbefore} onChange={handleChange} />
-                </div>
-                <div>
-                    <label>Rating After:</label>
-                    <input type="number" name="ratingafter" value={formData.ratingafter} onChange={handleChange} />
-                </div>
-                <div>
-                    <label>Image URL:</label>
-                    <input type="text" name="image" value={formData.image} onChange={handleChange} />
-                </div>
-                <button type="submit">Update Series</button>
-            </form>
+        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+                    <img src={backarrow} alt="" id='backarrow' onClick={handleBack} />
+            <div className="animated-form">
+                <h2>Update Series</h2>
+                <form onSubmit={handleSubmit}>
+                    <div>
+                        <label>Series Name:</label>
+                        <input type="text" name="seriesname" value={formData.seriesname} onChange={handleChange} />
+                    </div>
+                    <div>
+                        <label>Seasons:</label>
+                        <input type="number" name="seasons" value={formData.seasons} onChange={handleChange} />
+                    </div>
+                    <div>
+                        <label>Rating Before:</label>
+                        <input type="number" name="ratingbefore" value={formData.ratingbefore} onChange={handleChange} />
+                    </div>
+                    <div>
+                        <label>Rating After:</label>
+                        <input type="number" name="ratingafter" value={formData.ratingafter} onChange={handleChange} />
+                    </div>
+                    <div>
+                        <label>Image URL:</label>
+                        <input type="text" name="image" value={formData.image} onChange={handleChange} />
+                    </div>
+                    <button type="submit">Update Series</button>
+                </form>
+            </div>
         </div>
     );
 }
