@@ -13,7 +13,7 @@ const addValidationSchema = Joi.object({
     ratingbefore: Joi.number().min(0).max(10).required(),
     ratingafter: Joi.number().min(0).max(10).required(),
     image: Joi.string().uri().required(),
-    createdBy: Joi.string().required() // Assuming createdBy is the user ID associated with the entity
+    createdby: Joi.string().required() 
 });
 
 const updateValidationSchema = Joi.object({
@@ -164,15 +164,5 @@ router.post('/auth', async (req, res) => {
     }
 });
 
-router.get('/readByUser/:userId', async (req, res) => {
-    const userId = req.params.userId;
-    try {
-        const seriesByUser = await Model.find({ createdBy: userId });
-        res.json(seriesByUser);
-    } catch (err) {
-        console.error('Error in GET request:', err);
-        res.status(500).json({ error: 'Internal Server Error' });
-    }
-});
 
 module.exports = router;
