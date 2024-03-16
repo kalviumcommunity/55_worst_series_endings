@@ -14,7 +14,7 @@ function Landing() {
             try {
                 const seriesRes = await axios.get("https://five5-worst-series-endings-1.onrender.com/read");
                 setSeriesList(seriesRes.data);
-                const usersRes = await axios.get("https://five5-worst-series-endings-1.onrender.com/read");
+                const usersRes = await axios.get("https://five5-worst-series-endings-1.onrender.com/readUsers");
                 setUsers(usersRes.data);
             } catch (err) {
                 console.log(err);
@@ -34,10 +34,10 @@ function Landing() {
         }
     };
 
-    const handleUserSelect = async (userId) => {
-        setSelectedUser(userId);
+    const handleUserSelect = async (id) => {
+        setSelectedUser(id);
         try {
-            const res = await axios.get(`https://five5-worst-series-endings-1.onrender.com/read/${userId}`);
+            const res = await axios.get(`https://five5-worst-series-endings-1.onrender.com/readByUser/${id}`);
             setSeriesList(res.data);
         } catch (err) {
             console.log(err);

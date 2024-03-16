@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './form.css';
 import { useNavigate } from 'react-router-dom';
 import backarrow from '../assets/backarrow.png'
@@ -16,6 +16,12 @@ function Form() {
     image: '',
     createdby: `${sessionStorage.getItem('username')}`
   });
+  // useEffect(() => {
+  //   setFormData(prevData => ({
+  //     ...prevData,
+  //     createdby: sessionStorage.getItem('username') || ''
+  //   }));
+  // }, []); 
 
   const handleChange = (event) => {
     const { name, value, type, checked } = event.target;
@@ -28,7 +34,8 @@ function Form() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    axios.post('https://five5-worst-series-endings-1.onrender.com/new', formData)
+    console.log(formData);
+    const res =  await  axios.post('https://five5-worst-series-endings-1.onrender.com/new', formData)
       .then(() => {
         navigate('/');
       })

@@ -21,6 +21,7 @@ function Login() {
       const response = await axios.post('https://five5-worst-series-endings-1.onrender.com/login', { username, password });
       if (response.status === 200) {
         navigate('/'); 
+        sessionStorage.setItem('username',username)
       } else {
         setLoginMessage('Invalid Credentials');
       }
