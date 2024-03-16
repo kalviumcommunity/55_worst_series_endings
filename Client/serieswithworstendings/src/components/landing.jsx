@@ -12,9 +12,9 @@ function Landing() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const res = await axios.get("https://five5-worst-series-endings-1.onrender.com/read");
-                setSeriesList(res.data);
-                const usersRes = await axios.get("https://five5-worst-series-endings-1.onrender.com/read"); 
+                const seriesRes = await axios.get("https://five5-worst-series-endings-1.onrender.com/read");
+                setSeriesList(seriesRes.data);
+                const usersRes = await axios.get("https://five5-worst-series-endings-1.onrender.com/read");
                 setUsers(usersRes.data);
             } catch (err) {
                 console.log(err);
@@ -22,7 +22,7 @@ function Landing() {
         };
 
         fetchData();
-    }, []); 
+    }, []);
 
     const handleDelete = async (id) => {
         try {
@@ -37,7 +37,7 @@ function Landing() {
     const handleUserSelect = async (userId) => {
         setSelectedUser(userId);
         try {
-            const res = await axios.get(`https://five5-worst-series-endings-1.onrender.com/read/${userId}`); 
+            const res = await axios.get(`https://five5-worst-series-endings-1.onrender.com/read/${userId}`);
             setSeriesList(res.data);
         } catch (err) {
             console.log(err);
@@ -52,19 +52,14 @@ function Landing() {
                 <ul>
                     <li className="nav-item"><Link to="/signup">Sign Up</Link></li>
                     <li className="nav-item"><Link to="/login">Login</Link></li>
-                    <li className="nav-item"><Link to="/form">Add entity</Link></li> 
+                    <li className="nav-item"><Link to="/form">Add entity</Link></li>
                 </ul>
                 <div className="search-container">
                     <input type="text" placeholder="Search..." className="search-input" />
                 </div>
             </nav>
             <div className='translucentcontainer'>
-                <select value={selectedUser} onChange={(e) => handleUserSelect(e.target.value)}>
-                    <option value="">Select User</option>
-                    {users.map(user => (
-                        <option key={user._id} value={user._id}>{user.username}</option>
-                    ))}
-                </select>
+                
                 <div id="flexItems">
                     <br />
                     <div id="searchedSection">
@@ -76,17 +71,23 @@ function Landing() {
                                         <p>{series.seriesname}</p>
                                         <p>{`Before: ${series.ratingbefore} After: ${series.ratingafter}`}</p>
                                         <p>{`Seasons: ${series.seasons}`}</p>
-                                        
-                                       <button> <Link to={`/update/${series._id}`} className='uplink'>
-                                          Update
+
+                                        <button> <Link to={`/update/${series._id}`} className='uplink'>
+                                            Update
                                         </Link></button>
                                         <button onClick={() => handleDelete(series._id)}>Delete</button>
-                                    </div>  
+                                    </div>
                                 </div>
                             ))}
                         </div>
                     </div>
                 </div>
+                <select value={selectedUser} onChange={(e) => handleUserSelect(e.target.value)}>
+                    <option value="">Select User</option>
+                    {users.map(user => (
+                        <option key={user._id} value={user._id}>{user.username}</option>
+                    ))}
+                </select>  
             </div>
         </div>
     );

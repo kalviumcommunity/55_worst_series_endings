@@ -34,6 +34,16 @@ router.get('/read', async (req, res) => {
     }
 });
 
+router.get('/readUsers', async (req, res) => {
+    try {
+        const users = await userModel.find({}, '_id username');
+        res.json(users);
+    } catch (err) {
+        console.error('Error in GET request:', err);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
+
 router.post('/new', async (req, res) => {
     try {
         const { error, value } = addValidationSchema.validate(req.body);
@@ -150,6 +160,17 @@ router.post('/auth', async (req, res) => {
         res.json({ "token": TOKEN });
     } catch (err) {
         console.error(err);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
+
+router.get('/readByUser/:userId', async (req, res) => {
+    const userId = req.params.userId;
+    try {
+        const seriesByUser = await Model.find({ createdBy: userId });
+        res.json(seriesByUser);
+    } catch (err) {
+        console.error('Error in GET request:', err);
         res.status(500).json({ error: 'Internal Server Error' });
     }
 });
