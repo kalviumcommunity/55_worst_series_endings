@@ -13,7 +13,8 @@ function Form() {
     seasons: '',
     ratingbefore: '',
     ratingafter: '',
-    image: ''
+    image: '',
+    createdby: `${sessionStorage.getItem('username')}`
   });
 
   const handleChange = (event) => {
