@@ -4,6 +4,7 @@ const schema = require('./schema');
 const { Model } = require('./schema');
 const { userModel } = require('./userschema');
 const Joi = require('joi');
+const jwt = require('jsonwebtoken');
 
 router.use(express.json());
 
@@ -128,6 +129,21 @@ router.get('/read/:id', async (req, res) => {
     Model.findById({ _id })
         .then(users => res.json(users))
         .catch(err => console.log(err))
+});
+
+router.post('/auth', async(req,res) => {
+    try{const {username,password} = req.body
+    const user = {
+        "username" : username,
+        "password" : password
+    }
+    const TOKEN = jwt.sign(user,process.env.TOKEN)
+    res.cookie('token',TOKEN,{maxAge:365*24*60*60*1000})
+    res.json({"token" : TOKEN})
+}catch(err){
+    console.error(err)
+    res.status(500).json({error:'Internal Server Error'})
+}
 });
 
 module.exports = router;
