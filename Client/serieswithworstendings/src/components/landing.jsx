@@ -1,17 +1,21 @@
-import './landing.css';
-import seriesIcon from '../assets/seriesicon.png';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import seriesIcon from '../assets/seriesicon.png';
+import './landing.css';
 
 function Landing() {
     const [seriesList, setSeriesList] = useState([]);
+    const [users, setUsers] = useState([]);
+    const [selectedUser, setSelectedUser] = useState('');
 
     useEffect(() => {
         const fetchData = async () => {
             try {
                 const res = await axios.get("https://five5-worst-series-endings-1.onrender.com/read");
                 setSeriesList(res.data);
+                const usersRes = await axios.get("https://five5-worst-series-endings-1.onrender.com/read"); 
+                setUsers(usersRes.data);
             } catch (err) {
                 console.log(err);
             }
@@ -30,13 +34,23 @@ function Landing() {
         }
     };
 
+    const handleUserSelect = async (userId) => {
+        setSelectedUser(userId);
+        try {
+            const res = await axios.get(`https://five5-worst-series-endings-1.onrender.com/read/${userId}`); 
+            setSeriesList(res.data);
+        } catch (err) {
+            console.log(err);
+        }
+    };
+
     return (
         <div>
             <nav className="navbar">
                 <img src={seriesIcon} alt="Example" className='tvshowimg' />
                 <span className='navbartext'>Series with worst endings</span>
                 <ul>
-                <li className="nav-item"><Link to="/signup">Sign Up</Link></li>
+                    <li className="nav-item"><Link to="/signup">Sign Up</Link></li>
                     <li className="nav-item"><Link to="/login">Login</Link></li>
                     <li className="nav-item"><Link to="/form">Add entity</Link></li> 
                 </ul>
@@ -45,6 +59,12 @@ function Landing() {
                 </div>
             </nav>
             <div className='translucentcontainer'>
+                <select value={selectedUser} onChange={(e) => handleUserSelect(e.target.value)}>
+                    <option value="">Select User</option>
+                    {users.map(user => (
+                        <option key={user._id} value={user._id}>{user.username}</option>
+                    ))}
+                </select>
                 <div id="flexItems">
                     <br />
                     <div id="searchedSection">
