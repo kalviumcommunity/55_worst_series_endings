@@ -10,11 +10,11 @@ function Landing() {
     const [selectedUser, setSelectedUser] = useState('');
 
     useEffect(() => {
-        const fetchData = async () => {
+        const fetchData = async (id) => {
             try {
                 const seriesRes = await axios.get("https://five5-worst-series-endings-1.onrender.com/read");
                 setSeriesList(seriesRes.data);
-                const usersRes = await axios.get("https://five5-worst-series-endings-1.onrender.com/readUsers");
+                const usersRes = await axios.get(`https://five5-worst-series-endings-1.onrender.com/users`);
                 setUsers(usersRes.data);
             } catch (err) {
                 console.log(err);
@@ -34,18 +34,24 @@ function Landing() {
         }
     };
 
-    const handleUserSelect = async (id) => {
-        setSelectedUser(id);
+    const handleUserSelect = async () => {
+        
         try {
-            const res = await axios.get(`https://five5-worst-series-endings-1.onrender.com/readByUser/${id}`);
-            setSeriesList(res.data);
+            const res = await axios.get(`https://five5-worst-series-endings-1.onrender.com/read`);
+            const userData = res.data
+            userData.forEach(element => {
+                setSelectedUser(element.createdby)
+            });
         } catch (err) {
             console.log(err);
         }
     };
 
+    const filteredList = selectedUser === 'All' ? seriesList:seriesList.filter(series => series.created_by === selectedUser)
     return (
         <div>
+
+
             <nav className="navbar">
                 <img src={seriesIcon} alt="Example" className='tvshowimg' />
                 <span className='navbartext'>Series with worst endings</span>
@@ -54,12 +60,18 @@ function Landing() {
                     <li className="nav-item"><Link to="/login">Login</Link></li>
                     <li className="nav-item"><Link to="/form">Add entity</Link></li>
                 </ul>
-                <div className="search-container">
+                {/* <div className="search-container">
                     <input type="text" placeholder="Search..." className="search-input" />
-                </div>
+                </div> */}
+                <select value={selectedUser} onChange={(e) => handleUserSelect(e.target.value)}>
+                    <option value="All" >All</option>
+                    {users.map(user => (
+                        <option key={user._id} value={user._id}>{user.username}</option>
+                    ))}
+                </select>
             </nav>
             <div className='translucentcontainer'>
-                
+
                 <div id="flexItems">
                     <br />
                     <div id="searchedSection">
@@ -82,12 +94,7 @@ function Landing() {
                         </div>
                     </div>
                 </div>
-                <select value={selectedUser} onChange={(e) => handleUserSelect(e.target.value)}>
-                    <option value="">Select User</option>
-                    {users.map(user => (
-                        <option key={user._id} value={user._id}>{user.username}</option>
-                    ))}
-                </select>  
+
             </div>
         </div>
     );

@@ -148,6 +148,17 @@ router.get('/read/:id', async (req, res) => {
     }
 });
 
+
+router.get('/users',async(req,res)=>{
+    try{
+        const test = await userModel.find({})
+        console.log(test)
+        res.send(test)
+    }catch(err){
+        console.log(err)
+    }
+})
+
 router.post('/auth', async (req, res) => {
     try {
         const { username, password } = req.body;
