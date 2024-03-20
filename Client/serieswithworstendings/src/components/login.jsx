@@ -22,6 +22,7 @@ function Login() {
       if (response.status === 200) {
         navigate('/'); 
         sessionStorage.setItem('username',username)
+        sessionStorage.setItem('password', password)
       } else {
         setLoginMessage('Invalid Credentials');
       }

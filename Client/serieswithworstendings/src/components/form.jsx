@@ -16,12 +16,6 @@ function Form() {
     image: '',
     createdby: `${sessionStorage.getItem('username')}`
   });
-  // useEffect(() => {
-  //   setFormData(prevData => ({
-  //     ...prevData,
-  //     createdby: sessionStorage.getItem('username') || ''
-  //   }));
-  // }, []); 
 
   const handleChange = (event) => {
     const { name, value, type, checked } = event.target;
