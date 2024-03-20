@@ -64,7 +64,8 @@ function Landing() {
                 <img src={seriesIcon} alt="Example" className='tvshowimg' />
                 <span className='navbartext'>Series with worst endings</span>
                 <ul>
-                    <li className="nav-item"><Link to="/signup">Sign Up</Link></li>
+                   
+                {!isLoggedIn && <li className="nav-item"><Link to="/signup">Sign Up</Link></li>}
                     {isLoggedIn ? (
                         <li className="nav-item"><Link to="/form">Add entity</Link></li>
                     ) : null}
