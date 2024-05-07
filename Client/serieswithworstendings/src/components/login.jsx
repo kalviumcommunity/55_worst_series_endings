@@ -21,6 +21,8 @@ function Login() {
       const response = await axios.post('https://five5-worst-series-endings-1.onrender.com/login', { username, password });
       if (response.status === 200) {
         navigate('/'); 
+        sessionStorage.setItem('username',username)
+        sessionStorage.setItem('password', password)
       } else {
         setLoginMessage('Invalid Credentials');
       }
@@ -55,6 +57,7 @@ function Login() {
         />
         {loginMessage && <div id="error-message">{loginMessage}</div>}
         <br></br>
+
 
         <button type="submit">LOGIN</button>
       </form>

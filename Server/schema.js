@@ -5,7 +5,8 @@ const testSchema = mongoose.Schema({
     seasons: Number,
     ratingbefore: Number,
     ratingafter: Number,
-    image: String
+    image: String,
+    createdby: String
 });
 const Model = mongoose.model("serieswithworstendings", testSchema);
 module.exports = {Model};
